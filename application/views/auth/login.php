@@ -17,7 +17,7 @@
                                 <?= $this->session->flashdata('message') ?>
                                 <form class="user" method="post" action="<?= base_url('auth') ?>">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Enter Email Address..." value="<?= set_value('email'); ?>">
+                                        <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Enter Email Address...">
                                         <?= form_error('email', '<small class="text-danger pl-3">', '</small>') ?>
                                     </div>
                                     <div class="form-group">
@@ -28,7 +28,7 @@
                                         Login
                                     </button>
                                     <hr>
-                                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <a href="<?= base_url('auth/glogin') ?>" class="btn btn-google btn-user btn-block">
                                         <i class="fab fa-google fa-fw"></i> Login with Google
                                     </a>
                                 </form>

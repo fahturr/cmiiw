@@ -7,6 +7,8 @@ application/logs/*
 !application/logs/index.html
 
 !application/*/.htaccess
+application/third_party/vendor
+application/third_party/composer.json
 
 composer.lock
 
