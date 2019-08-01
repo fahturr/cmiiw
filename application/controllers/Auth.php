@@ -11,6 +11,9 @@ class Auth extends CI_Controller
 
     public function index()
     {
+        if ($this->session->userdata('email')) {
+            redirect('home');
+        }
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
             'required' => 'Email wajib diisi!',
             'valid_email' => 'Email tidak valid!'
@@ -37,9 +40,15 @@ class Auth extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
         if ($user) {
             if (password_verify($pass, $user['password'])) {
-                $data = ['email' => $user['email']];
-                $this->session->set_userdata($data);
-                redirect('home');
+                if ($user['id_role'] == 1) {
+                    $data = ['email' => $user['email']];
+                    $this->session->set_userdata($data);
+                    redirect('home');
+                } else {
+                    $data = ['email' => $user['email']];
+                    $this->session->set_userdata($data);
+                    redirect('admin');
+                }
             } else {
                 $this->session->set_flashdata(
                     'message',

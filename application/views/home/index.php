@@ -1,5 +1,5 @@
 <!-- Banner Area Starts -->
-<section class="banner-area text-center">
+<section class="banner-area text-center" style="background-attachment: fixed">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-6 align-self-center">
                 <div class="welcome-img">
-                    <img src="<?= base_url('assets'); ?>/img/MW.jfif" class="img-fluid" alt="">
+                    <img src="<?= base_url('assets'); ?>/img/logo/logo_mw.png" class="img-fluid float-right" alt="">
                 </div>
             </div>
             <div class="col-md-6 align-self-center">

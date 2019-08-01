@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="single-widget single-widget1">
-                        <a href="index.html"><img src="<?= base_url('assets'); ?>/img/logo/logo2.png" alt=""></a>
+                        <a href="index.html"><img src="<?= base_url('assets'); ?>/img/logo/logo_mw.png" width="300" height="250" alt=""></a>
                     </div>
                 </div>
                 <div class="col-md-4">

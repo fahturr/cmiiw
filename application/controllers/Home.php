@@ -24,13 +24,24 @@ class Home extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function menu()
+
+    public function troley()
     {
         $data = $this->user;
-        $data['judul'] = 'Menu';
+        $data['judul'] = 'Troley';
 
         $this->load->view('templates/header', $data);
-        $this->load->view('home/menu');
+        $this->load->view('home/troley');
+        $this->load->view('templates/footer');
+    }
+
+    public function profile()
+    {
+        $data = $this->user;
+        $data['judul'] = 'Troley';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('home/profile');
         $this->load->view('templates/footer');
     }
 }
