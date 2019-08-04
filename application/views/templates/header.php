@@ -15,7 +15,7 @@
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/animate-3.7.0.css">
-    <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/font-awesome-4.7.0.min.css">
+    <link href="<?= base_url('assets/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/flaticon.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/bootstrap-4.1.3.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/owl-carousel.min.css">
@@ -51,9 +51,14 @@
                             </li>
                             <li>
                                 <a href="<?= base_url('home/troley') ?>" class="btn">
-                                    <img src="<?= base_url('assets') ?>/img/troley.png" width="40">
+                                    <i class="fas fa-shopping-cart"></i>
+
                                     <span class="badge badge-light">
-                                        9
+                                        <?php
+                                        foreach ($total as $data) {
+                                            echo $data;
+                                        }
+                                        ?>
                                     </span>
                                     <span class="sr-only">unread messages</span>
                                 </a>

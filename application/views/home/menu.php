@@ -34,7 +34,6 @@
                                         <span class="style-change"></span>
                                     </div>
                                     <p class="pt-3">' . $deskripsi . '</p>
-                                    <button class="template-btn">Pesan</button>
                                 </div>
                             </div>
                         </form>
@@ -43,26 +42,27 @@
                 } else {
                     echo
                         '   
-                    <div class="col-md-4 col-sm-6">
-                        <form action="">
-                            <div class="single-food">
-                                <div class="food-img">
-                                    <img src="' . base_url("assets/img/menus/") . $gambar_menu . '" class="img-fluid" alt="">
-                                </div>
-                                <div class="food-content">
-                                    <div class="d-flex justify-content-between">
-                                        <h5>' . $nama_menu . '</h5>
-                                        <span class="style-change">Rp.' .  $harga . '</span>
+                        <div class="col-md-4 col-sm-6">
+                            <form action="' . base_url('menu/pesan') . '" method="post">
+                                <div class="single-food">
+                                    <div class="food-img">
+                                        <input name="id" value="' . $id_menu . '" hidden>
+                                        <input name="harga" value="' . $harga . '" hidden>
+                                        <img src="' . base_url("assets/img/menus/") . $gambar_menu . '" class="img-fluid" alt="">
                                     </div>
-                                    <p class="pt-3">' . $deskripsi . '</p>
-                                    <button class="template-btn">Pesan</button>
+                                    <div class="food-content">
+                                        <div class="d-flex justify-content-between">
+                                            <h5>' . $nama_menu . '</h5>
+                                            <small class="style-change">' . "Rp " . number_format($harga, 2, ',', '.') . '</small>
+                                        </div>
+                                        <p class="pt-3">' . $deskripsi . '</p>
+                                        <button type="submit" class="template-btn">Pesan</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
+                            </form>
+                        </div>
                     ';
                 }
-
             endforeach; ?>
         </div>
     </div>

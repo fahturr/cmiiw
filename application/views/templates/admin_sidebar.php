@@ -22,23 +22,22 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="<?= base_url('admin/') ?>">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+                <span>Pesanan</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Halaman Promo</span></a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="<?= base_url('admin/menu') ?>">
                 <i class="fab fa-fw fa-elementor"></i>
                 <span>Menu</span></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('admin/profile') ?>">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Profile</span></a>
+        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

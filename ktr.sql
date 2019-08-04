@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 03, 2019 at 12:27 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.6
+-- Host: 127.0.0.1
+-- Generation Time: Aug 04, 2019 at 09:11 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -63,6 +63,19 @@ CREATE TABLE `transaksi` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `troli`
+--
+
+CREATE TABLE `troli` (
+  `id_troli` int(11) NOT NULL,
+  `id_menu` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -80,8 +93,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `gambar`, `email`, `password`, `id_role`) VALUES
-(12, 'FahturRahman Fauzi', 'image.png', 'fahturrahman18ti@mahasiswa.pcr.ac.id', '$2y$10$f41/acvbwNEfF4xF3TXyDevJrJJAHQ6Mts393s2xdEA7eYMbxGHpG', 2),
-(14, 'Dwi Safitra', 'image.png', 'dwi18ti@mahasiswa.pcr.ac.id', '$2y$10$6WkBqsbhQUa2vyjPTYlmnu8Hckm9nyyUC0e6.4fxDq4Q6QHjxIts6', 1),
+(12, 'FahturRahman Fauzi', 'line.png', 'fahturrahman18ti@mahasiswa.pcr.ac.id', '$2y$10$f41/acvbwNEfF4xF3TXyDevJrJJAHQ6Mts393s2xdEA7eYMbxGHpG', 2),
+(14, 'Dwi Safitra', 'man.png', 'dwi18ti@mahasiswa.pcr.ac.id', '$2y$10$6WkBqsbhQUa2vyjPTYlmnu8Hckm9nyyUC0e6.4fxDq4Q6QHjxIts6', 1),
 (15, 'Nofiarly Kadarisman', 'image.png', 'nofiarly18ti@mahasiswa.pcr.ac.id', '$2y$10$v1cpMTFZaJU44VsSH22S..jBjHVzPf6d0the2x9TUANpjarJCt9x6', 1);
 
 -- --------------------------------------------------------
@@ -122,6 +135,14 @@ ALTER TABLE `transaksi`
   ADD KEY `fk_id_menu` (`id_menu`);
 
 --
+-- Indexes for table `troli`
+--
+ALTER TABLE `troli`
+  ADD PRIMARY KEY (`id_troli`),
+  ADD KEY `fk_id_user2` (`id_user`),
+  ADD KEY `fk_id_menu2` (`id_menu`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -151,10 +172,16 @@ ALTER TABLE `transaksi`
   MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `troli`
+--
+ALTER TABLE `troli`
+  MODIFY `id_troli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user_role`
@@ -172,6 +199,13 @@ ALTER TABLE `user_role`
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `fk_id_menu` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`),
   ADD CONSTRAINT `fk_id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
+-- Constraints for table `troli`
+--
+ALTER TABLE `troli`
+  ADD CONSTRAINT `fk_id_menu2` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`),
+  ADD CONSTRAINT `fk_id_user2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Constraints for table `user`

@@ -2,40 +2,76 @@
     <table id="cart" class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th style="width:50%; padding:2px">Product</th>
-                <th style="width:10%; padding:2px">Price</th>
-                <th style="width:8%; padding:2px">Quantity</th>
-                <th style="width:20%; padding:2px" class="text-center">Subtotal</th>
+                <th style="width:60%; padding:2px">Product</th>
+                <th style="width:10%; padding:5px"></th>
+                <th style="width:8%; padding:2px">Price</th>
+                <th style="width:20%; padding:2px" class="text-center"></th>
                 <th style="width:10%"></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td data-th="Product">
-                    <div class="row">
-                        <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
-                        <div class="col-sm-10">
-                            <h4 class="nomargin ml-4" style="color:black">Product 1</h4>
-                            <p class="ml-4">Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                </td>
-                <td data-th="Price">$1.99</td>
-                <td data-th="Quantity">
-                    <input type="number" class="form-control text-center" value="1">
-                </td>
-                <td data-th="Subtotal" class="text-center">1.99</td>
-                <td class="actions" data-th="">
-                    <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                    <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
-                </td>
+                <?php if ($this->db->count_all('troli') == 0) {
+                    echo '  
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm">
+                                    Troli Kosong
+                                </div>    
+                            </div>
+                        </td>
+                    </tr> 
+                    ';
+                } else {
+                    foreach ($troli as $data) {
+                        echo '
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="col-sm-0">
+                                        <img src="' . base_url('assets/img/menus/') . $data['gambar_menu'] . '" width="100" alt="" style="margin-right: 2%;" align="left"/>
+                                        <h4 class="nomargin ml-4" style="color:black;">' . $data['nama_menu'] . '</h4>
+                                        <p class="ml-4">' . $data['deskripsi'] . '</p>
+                                    </div>
+                                </div>
+                            </div
+                        </td>
+                        <td data-th="Price"></td>
+                        <td data-th="Quantity">' . 'Rp' . number_format($data['harga'], 2, ',', '.') . '</td>
+                        <td data-th="Subtotal" class="text-center"></td>
+                        <td class="actions" data-th="">
+                            <form action="' . base_url('home/hapus') . '" method="post">
+                                <input name="id" value="' . $data['id_troli'] . '" hidden>
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>';
+                    }
+                } ?>
             </tr>
         </tbody>
         <tfoot>
             <tr>
-                <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                <td><a href="<?= base_url('menu') ?>" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
                 <td colspan="2" class="hidden-xs"></td>
-                <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
+                <td class="hidden-xs text-center">
+                    <?php
+                    foreach ($jumlah as $data) {
+                        $jum = $data;
+                        if ($jum == null) {
+                            $jum = 0;
+                        }
+                        echo
+                            '
+                            <strong>Total ' . "Rp " . number_format($jum, 2, ',', '.') . '</strong>
+                            ';
+                    }
+                    ?>
+                </td>
                 <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
             </tr>
         </tfoot>

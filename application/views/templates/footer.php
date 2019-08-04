@@ -24,7 +24,7 @@
                             <div class="info-text">
                                 <p>fahturrahman18ti@mahasiswa.pcr.ac.id</p>
                                 <p>ryvaldo18ti@mahasiswa.pcr.ac.id</p>
-                                <p>support@mahasiswa.pcr.ac.id</p>
+                                <p>wina18ti@mahasiswa.pcr.ac.id</p>
                             </div>
                         </div>
                     </div>
@@ -45,6 +45,13 @@
 
 
 <!-- Javascript -->
+<script>
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+</script>
+
 <script src="<?= base_url('assets'); ?>/js/jquery-2.2.4.min.js"></script>
 <script src="<?= base_url('assets'); ?>/js/bootstrap-4.1.3.min.js"></script>
 <script src="<?= base_url('assets'); ?>/js/wow.min.js"></script>

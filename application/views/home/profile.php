@@ -1,11 +1,23 @@
 <div class="container" style="margin-top: 3.5cm">
-    <div class="row mb-3">
-        <div class="col-md 2">
-            <img src="<?= base_url('assets/img/users/') . $gambar ?>" width="100">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <?= $this->session->flashdata('message') ?>
         </div>
-        <div class="col-md-10">
-            <span>Nama : <?= $nama_user ?></span><br>
-            <span>Email : <?= $email ?></span>
+    </div>
+
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4 py-2 px-2">
+                <img src="<?= base_url('assets/img/users/') . $gambar ?>" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $nama_user ?></h5>
+                    <p class="card-text"><?= $email ?></p>
+                    <a href="<?= base_url('home/edit') ?>" class="template-btn">Edit</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

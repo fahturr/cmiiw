@@ -18,13 +18,11 @@
                                 <form class="user" method="post" action="<?= base_url('auth') ?>">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Enter Email Address...">
-                                        <?= form_error('email', '<small class="text-danger pl-3">', '</small>') ?>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password">
-                                        <?= form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    <button type="submit" class="btn btn-warning btn-user btn-block">
                                         Login
                                     </button>
                                     <hr>

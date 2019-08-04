@@ -40,13 +40,12 @@ class Auth extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
         if ($user) {
             if (password_verify($pass, $user['password'])) {
+                $data = ['email' => $user['email']];
+                $this->session->set_userdata($data);
+
                 if ($user['id_role'] == 1) {
-                    $data = ['email' => $user['email']];
-                    $this->session->set_userdata($data);
                     redirect('home');
                 } else {
-                    $data = ['email' => $user['email']];
-                    $this->session->set_userdata($data);
                     redirect('admin');
                 }
             } else {
@@ -94,8 +93,9 @@ class Auth extends CI_Controller
             $data = [
                 'nama_user' => htmlspecialchars($this->input->post('name', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
-                'gambar' => 'image.jpg',
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT)
+                'gambar' => 'image.png',
+                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'id_role' => 1
             ];
 
             $this->db->insert('user', $data);
@@ -115,67 +115,67 @@ class Auth extends CI_Controller
         redirect('auth');
     }
 
-    public function glogin()
-    {
-        require_once APPPATH . 'third_party/vendor/autoload.php';
-        $client = new Google_Client();
-        $client->setAuthConfig(APPPATH . 'third_party/client-secret.json');
-        $client->setRedirectUri(base_url('auth'));
-        $client->setScopes(array(
-            "https://www.googleapis.com/auth/userinfo.email",
-            "https://www.googleapis.com/auth/userinfo.profile",
-            "https://www.googleapis.com/auth/plus.me",
-        ));
+    // public function glogin()
+    // {
+    //     require_once APPPATH . 'third_party/vendor/autoload.php';
+    //     $client = new Google_Client();
+    //     $client->setAuthConfig(APPPATH . 'third_party/client-secret.json');
+    //     $client->setRedirectUri(base_url('auth'));
+    //     $client->setScopes(array(
+    //         "https://www.googleapis.com/auth/userinfo.email",
+    //         "https://www.googleapis.com/auth/userinfo.profile",
+    //         "https://www.googleapis.com/auth/plus.me",
+    //     ));
 
-        if (!isset($_GET['code'])) {
-            $url = $client->createAuthUrl();
-            header('location: ' . filter_var($url, FILTER_SANITIZE_URL));
-        } else {
-            $client->authenticate($_GET['code']);
-            $data = [
-                'access_token' => $client->getAccessToken(),
-                'logged' => TRUE
-            ];
-            $this->session->set_userdata($data['access_token'] = $client->getAccessToken());
+    //     if (!isset($_GET['code'])) {
+    //         $url = $client->createAuthUrl();
+    //         header('location: ' . filter_var($url, FILTER_SANITIZE_URL));
+    //     } else {
+    //         $client->authenticate($_GET['code']);
+    //         $data = [
+    //             'access_token' => $client->getAccessToken(),
+    //             'logged' => TRUE
+    //         ];
+    //         $this->session->set_userdata($data['access_token'] = $client->getAccessToken());
 
-            try {
-                // profile
-                $plus = new Google_Service_Plus($client);
-                $data = ['access_profile' => $plus->people->get('me')];
-                $this->session->set_userdata($data);
-            } catch (\Exception $e) {
-                echo $e->__toString();
-                $this->session->unset_userdata('access_profile');
-                $this->session->unset_userdata('logged');
-                die;
-            }
+    //         try {
+    //             // profile
+    //             $plus = new Google_Service_Plus($client);
+    //             $data = ['access_profile' => $plus->people->get('me')];
+    //             $this->session->set_userdata($data);
+    //         } catch (\Exception $e) {
+    //             echo $e->__toString();
+    //             $this->session->unset_userdata('access_profile');
+    //             $this->session->unset_userdata('logged');
+    //             die;
+    //         }
 
-            redirect('home');
-        }
-        // $client->authenticate($_GET['code']);
-        // $data = [
-        //     'access_token' => $client->getAccessToken(),
-        //     'access_profile' => ''
-        // ];
+    //         redirect('home');
+    //     }
+    //     // $client->authenticate($_GET['code']);
+    //     // $data = [
+    //     //     'access_token' => $client->getAccessToken(),
+    //     //     'access_profile' => ''
+    //     // ];
 
-        // try {
-        //     $plus = new Google_Service_Plus($client);
-        //     $data['access_profile'] = $plus->people->get('me');
-        //     $this->session->set_userdata($data);
-        //     redirect('home');
-        // } catch (\Exception $e) {
-        //     echo $e->__toString();
-        //     $data['access_token'] = '';
-        //     redirect('auth');
-        // }
-        // redirect('home');
+    //     // try {
+    //     //     $plus = new Google_Service_Plus($client);
+    //     //     $data['access_profile'] = $plus->people->get('me');
+    //     //     $this->session->set_userdata($data);
+    //     //     redirect('home');
+    //     // } catch (\Exception $e) {
+    //     //     echo $e->__toString();
+    //     //     $data['access_token'] = '';
+    //     //     redirect('auth');
+    //     // }
+    //     // redirect('home');
 
-    }
+    // }
 
-    public function glogout()
-    {
-        $this->session->unset_userdata('access_profile');
-        $this->session->unset_userdata('access_token');
-        redirect('auth');
-    }
+    // public function glogout()
+    // {
+    //     $this->session->unset_userdata('access_profile');
+    //     $this->session->unset_userdata('access_token');
+    //     redirect('auth');
+    // }
 }
