@@ -25,10 +25,6 @@
                                     <button type="submit" class="btn btn-warning btn-user btn-block">
                                         Login
                                     </button>
-                                    <hr>
-                                    <a href="<?= base_url('auth/glogin') ?>" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Login with Google
-                                    </a>
                                 </form>
                                 <hr>
                                 <div class="text-center">

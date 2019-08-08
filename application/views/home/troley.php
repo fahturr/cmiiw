@@ -72,7 +72,7 @@
                     }
                     ?>
                 </td>
-                <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+                <td><button type="submit" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></button></td>
             </tr>
         </tfoot>
     </table>

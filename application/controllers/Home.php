@@ -107,4 +107,7 @@ class Home extends CI_Controller
             redirect('home/profile');
         }
     }
+
+    public function checkout()
+    { }
 }
